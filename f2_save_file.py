@@ -150,22 +150,22 @@ class F2SaveFile(object):
         self.set_function_int('f6', 'base_' + name, value)
 
     def print_skills(self):
-        print "{:<15} {:<30}".format('Skill', 'Value')
-        print 21*"-"
+        print("{:<15} {:<30}".format('Skill', 'Value'))
+        print(21*"-")
         for skill in sorted(self.skills.keys()):
-            print "{:<15} {:<30}".format(skill, self.get_skill(skill))
+            print("{:<15} {:<30}".format(skill, self.get_skill(skill)))
 
     def print_perks(self):
-        print "{:<40} {:<6}".format('Perk', 'Value')
-        print 46*"-"
+        print("{:<40} {:<6}".format('Perk', 'Value'))
+        print(46*"-")
         for perk in sorted(self.perks.keys()):
-            print "{:<40} {:<6}".format(perk, self.get_perk(perk))
+            print("{:<40} {:<6}".format(perk, self.get_perk(perk)))
 
     def print_stats(self):
-        print "{:<15} {:<30}".format('Stat', 'Value')
-        print 21*"-"
+        print("{:<15} {:<30}".format('Stat', 'Value'))
+        print(21*"-")
         for stat in sorted(self.stats):
-            print "{:<15} {:<30}".format(stat, self.get_stat(stat))        
+            print("{:<15} {:<30}".format(stat, self.get_stat(stat)))        
 
     def _load_items(self):
         fname = os.path.join('data', 'f2items.csv')
@@ -182,9 +182,9 @@ class F2SaveFile(object):
                     continue
                 ps = line.split(',')
                 if len(ps) % 2 != 0:
-                    print "BAD LINE: {0}".format(line)
+                    print("BAD LINE: {0}".format(line))
                     exit(1)
-                for i in xrange(0, len(ps), 2):
+                for i in range(0, len(ps), 2):
                     self.item_db[ps[i]] = {'name':ps[i+1], "section":section}
 
     def _find_f6(self):
@@ -220,6 +220,6 @@ class F2SaveFile(object):
         return self.mm_save.find(marker)
 
     def print_info(self):
-        print "Save Name: '{0}'\tCharacter: '{1}'".format(
-            self.get_value('header', 'savename'), 
-            self.get_value('header', 'name'))
+        print("Save Name: '{0}'\tCharacter: '{1}'".format(
+            self.get_value('header', 'savename').decode(), 
+            self.get_value('header', 'name').decode()))
